@@ -1,8 +1,14 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const [darkMode, setDarkMode] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  useEffect(() => {
+    document.body.className = darkMode ? 'dark-mode' : ''
+  }, [darkMode])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -21,13 +27,22 @@ function App() {
       <nav className="navbar">
         <div className="nav-container">
           <div className="nav-logo">KC</div>
-          <ul className="nav-menu">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
+          <div className={`nav-menu ${menuOpen ? 'active' : ''}`}>
+            <a href="#home" onClick={() => setMenuOpen(false)}>Home</a>
+            <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
+            <a href="#skills" onClick={() => setMenuOpen(false)}>Skills</a>
+            <a href="#projects" onClick={() => setMenuOpen(false)}>Projects</a>
+            <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+          </div>
+          <div className="nav-controls">
+            <button className="theme-toggle" onClick={() => setDarkMode(!darkMode)}>
+            </button>
+            <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
         </div>
       </nav>
 

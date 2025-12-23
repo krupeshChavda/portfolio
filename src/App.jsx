@@ -36,6 +36,9 @@ function App() {
           </div>
           <div className="nav-controls">
             <button className="theme-toggle" onClick={() => setDarkMode(!darkMode)}>
+              <div className="toggle-slider">
+                {darkMode ? '🌙' : '☀️'}
+              </div>
             </button>
             <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
               <span></span>
